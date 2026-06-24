@@ -1,6 +1,6 @@
 
 import './App.css'
-import Home from './page/Home/home'
+import Home from './page/Home/Home'
 import MobileLayout from './page/Layout'
 import Product from './page/Products/Product'
 import { BrowserRouter, Routes, Route } from "react-router-dom";
