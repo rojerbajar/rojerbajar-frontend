@@ -12,7 +12,7 @@ function App() {
     <Routes>
     <Route path="/" element={<MobileLayout />}>
     <Route index element={<Home />} />
-    <Route path="/product" element={<Product />} />
+    <Route path="/products" element={<Product />} />
     <Route path="*" element={<PageNotFound />} />
     </Route>
     </Routes>

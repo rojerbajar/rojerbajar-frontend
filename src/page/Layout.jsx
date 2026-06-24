@@ -25,7 +25,7 @@ export default function MobileLayout() {
       }}
     >
       <Container
-        maxWidth="xs"
+        maxWidth="sm"
         disableGutters
         sx={{
           bgcolor: "white",
@@ -53,7 +53,7 @@ export default function MobileLayout() {
 
         {/* নিচের Bottom Navigation (Footer Menu) */}
         <Paper
-          elevation={3}
+          elevation={5}
           sx={{ position: "sticky", bottom: 0, left: 0, right: 0 }}
         >
 
@@ -70,7 +70,7 @@ export default function MobileLayout() {
                   break;
 
                 case 1:
-                  navigate("/product");
+                  navigate("/products");
                   break;
                 default:
                   break;
@@ -78,7 +78,7 @@ export default function MobileLayout() {
             }}
           >
             <BottomNavigationAction label="Home" icon={<HomeIcon />} />
-            <BottomNavigationAction label="Product" icon={<CategoryIcon />} />
+            <BottomNavigationAction label="Products" icon={<CategoryIcon />} />
           </BottomNavigation>
         </Paper>
       </Container>
