@@ -1,4 +1,3 @@
-import  { useState } from "react";
 import {
   Box,
   Container,
@@ -7,13 +6,14 @@ import {
   Paper,
 } from "@mui/material";
 import HomeIcon from "@mui/icons-material/Home";
-import ResponsiveAppBar from "../Commponnents/Header";
-import { Outlet,useNavigate} from "react-router-dom";
 import CategoryIcon from '@mui/icons-material/Category';
+import ResponsiveAppBar from "../Commponnents/Header";
+// useLocation ইমপোর্ট করা হলো
+import { Outlet, useNavigate, useLocation } from "react-router-dom";
 
 export default function MobileLayout() {
-  const [value, setValue] = useState(0);
   const navigate = useNavigate();
+  const location = useLocation(); // বর্তমান URL জানার জন্য
 
   return (
     <Box
@@ -32,7 +32,6 @@ export default function MobileLayout() {
           height: "100vh",
           display: "flex",
           flexDirection: "column",
-          // নিচের এই দুটি লাইন ড্রয়ারকে বাইরে যেতে বাধা দেবে
           position: "relative",
           overflow: "hidden",
         }}
@@ -40,11 +39,19 @@ export default function MobileLayout() {
         {/* উপরের App Bar (Header) */}
         <ResponsiveAppBar />
 
-        {/* মাঝখানের Content Area (এখানে আপনার অ্যাপের মূল ডিজাইন থাকবে) */}
+        {/* মাঝখানের Content Area */}
         <Box
           sx={{
             flexGrow: 1,
-            overflowY: "auto", // কন্টেন্ট বেশি হলে স্ক্রল করা যাবে
+            overflowY: "auto",
+            /* Chrome, Safari এবং Opera-এর জন্য স্ক্রলবার লুকানো */
+            "&::-webkit-scrollbar": {
+              display: "none",
+            },
+            /* Firefox-এর জন্য */
+            scrollbarWidth: "none",
+            /* Internet Explorer এবং Edge-এর জন্য */
+            msOverflowStyle: "none",
           }}
         >
           <Outlet />
@@ -55,29 +62,16 @@ export default function MobileLayout() {
           elevation={5}
           sx={{ position: "sticky", bottom: 0, left: 0, right: 0 }}
         >
-
-
           <BottomNavigation
             showLabels
-            value={value}
+            value={location.pathname} // বর্তমান URL অনুযায়ী সিলেক্ট হবে
             onChange={(event, newValue) => {
-              setValue(newValue);
-
-              switch (newValue) {
-                case 0:
-                  navigate("/");
-                  break;
-
-                case 1:
-                  navigate("/products");
-                  break;
-                default:
-                  break;
-              }
+              navigate(newValue); // যেটাতে ক্লিক করবেন সেই URL এ চলে যাবে
             }}
           >
-            <BottomNavigationAction label="Home" icon={<HomeIcon />} />
-            <BottomNavigationAction label="Products" icon={<CategoryIcon />} />
+            {/* value প্রপস এর মাধ্যমে URL এর পাথ বলে দেওয়া হলো */}
+            <BottomNavigationAction label="Home" value="/" icon={<HomeIcon />} />
+            <BottomNavigationAction label="Products" value="/products" icon={<CategoryIcon />} />
           </BottomNavigation>
         </Paper>
       </Container>

@@ -8,13 +8,12 @@ import MenuIcon from '@mui/icons-material/Menu';
 import HomeIcon from '@mui/icons-material/Home';
 import CategoryIcon from '@mui/icons-material/Category';
 import ContactSupportIcon from '@mui/icons-material/ContactSupport';
-import coverImg from '../assets/cover-250.webp'
+import coverImg from '../assets/cover-250.webp';
+// useLocation ইমপোর্ট করা হলো
+import { useNavigate, useLocation } from 'react-router-dom';
 
 export default function Header() {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
-  
-  // কোন মেনুটা এখন সিলেক্ট করা আছে, তা মনে রাখার জন্য স্টেট (ডিফল্ট 'Home' রাখা হলো)
-  const [activeItem, setActiveItem] = useState('Home'); 
 
   const toggleDrawer = (open) => () => {
     setIsDrawerOpen(open);
@@ -61,12 +60,10 @@ export default function Header() {
         />
       )}
 
-      {/* Sidebar এ activeItem এবং setActiveItem পাঠানো হলো */}
+      {/* এখন আর স্টেট পাঠানোর দরকার নেই */}
       <Sidebar 
         isDrawerOpen={isDrawerOpen} 
         toggleDrawer={toggleDrawer} 
-        activeItem={activeItem} 
-        setActiveItem={setActiveItem} 
       />
       
     </>
@@ -74,12 +71,16 @@ export default function Header() {
 }
 
 
-const Sidebar = ({ isDrawerOpen, toggleDrawer, activeItem, setActiveItem }) => {
+const Sidebar = ({ isDrawerOpen, toggleDrawer }) => {
+    const navigate = useNavigate();
+    // বর্তমান URL কী আছে সেটা জানার জন্য useLocation
+    const location = useLocation(); 
   
   const menuItems = [
-    { text: 'Home', icon: <HomeIcon /> },
-    { text: 'Products', icon: <CategoryIcon /> },
-    { text: 'Contact Us', icon: <ContactSupportIcon /> }
+    { text: 'Home', pathName: '/', icon: <HomeIcon /> },
+    { text: 'Products', pathName: '/products', icon: <CategoryIcon /> },
+    // Contact Us এর পাথ পরিবর্তন করা হয়েছে
+    { text: 'Contact Us', pathName: '/contact', icon: <ContactSupportIcon /> } 
   ];
 
   return (
@@ -106,31 +107,31 @@ const Sidebar = ({ isDrawerOpen, toggleDrawer, activeItem, setActiveItem }) => {
         sx={{ width: '100%', height: 180 }}
       />
       
-      <List sx={{ flexGrow: 1, pt: 2, px: 2 }}> {/* px: 2 দিয়ে দুপাশে একটু জায়গা রাখা হয়েছে */}
+      <List sx={{ flexGrow: 1, pt: 2, px: 2 }}>
         {menuItems.map((item) => {
           
-          // চেক করা হচ্ছে এই আইটেমটি অ্যাকটিভ কিনা
-          const isActive = activeItem === item.text; 
+          // বর্তমান URL-এর সাথে মেনুর path মিলে গেলে সেটা অ্যাকটিভ হবে
+          const isActive = location.pathname === item.pathName; 
 
           return (
             <ListItem disablePadding key={item.text} sx={{ mb: 1 }}>
               <ListItemButton 
                 onClick={() => {
-                  setActiveItem(item.text); // ক্লিক করলে এই আইটেমটি অ্যাকটিভ হবে
-                  toggleDrawer(false)(); // এবং ড্রয়ার বন্ধ হয়ে যাবে
+                  navigate(item.pathName);
+                  toggleDrawer(false)(); // ড্রয়ার বন্ধ হয়ে যাবে
                 }}
                 sx={{ 
-                  borderRadius: '10px', // কোণাগুলো সুন্দর গোল করা হয়েছে
-                  bgcolor: isActive ? '#e3f2fd' : 'transparent', // অ্যাকটিভ হলে হালকা নীল ব্যাকগ্রাউন্ড
-                  color: isActive ? '#1976d2' : '#333', // অ্যাকটিভ হলে লেখা নীল হবে
+                  borderRadius: '10px', 
+                  bgcolor: isActive ? '#e3f2fd' : 'transparent', 
+                  color: isActive ? '#1976d2' : '#333', 
                   '&:hover': { 
-                    bgcolor: isActive ? '#e3f2fd' : '#f5f5f5' // হোভার করলে কেমন দেখাবে
+                    bgcolor: isActive ? '#e3f2fd' : '#f5f5f5' 
                   }
                 }}
               >
                 <ListItemIcon sx={{ 
                   minWidth: '40px', 
-                  color: isActive ? '#1976d2' : '#757575' // অ্যাকটিভ হলে আইকন নীল হবে, নাহলে ছাই রঙ
+                  color: isActive ? '#1976d2' : '#757575' 
                 }}>
                   {item.icon}
                 </ListItemIcon>
@@ -138,7 +139,7 @@ const Sidebar = ({ isDrawerOpen, toggleDrawer, activeItem, setActiveItem }) => {
                 <ListItemText 
                   primary={item.text} 
                   primaryTypographyProps={{ 
-                    fontWeight: isActive ? 600 : 500 // অ্যাকটিভ হলে লেখা একটু মোটা (বোল্ড) দেখাবে
+                    fontWeight: isActive ? 600 : 500 
                   }} 
                 />
               </ListItemButton>
