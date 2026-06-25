@@ -11,7 +11,7 @@ export default defineConfig({
         name: 'Rojer Bajar',
         short_name: 'RojerBajar',
         description: 'Online Grocery Store',
-        theme_color: '#000000', // এখানে কালো রঙ দেওয়া হলো
+        theme_color: '#ffffff', // এখানে সাদা রঙ দেওয়া হলো
         background_color: '#ffffff',
         display: 'standalone',
         start_url: '/',
