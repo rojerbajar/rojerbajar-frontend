@@ -45,7 +45,6 @@ export default function MobileLayout() {
           sx={{
             flexGrow: 1,
             overflowY: "auto", // কন্টেন্ট বেশি হলে স্ক্রল করা যাবে
-            p: 1,
           }}
         >
           <Outlet />

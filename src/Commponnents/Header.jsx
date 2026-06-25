@@ -1,14 +1,21 @@
 import { useState } from 'react';
 import { 
   AppBar, Toolbar, Typography, IconButton, 
-  List, ListItem, ListItemText, Box, Avatar 
+  List, ListItem, ListItemText, Box, Avatar, ListItemButton, ListItemIcon
 } from '@mui/material';
+
 import MenuIcon from '@mui/icons-material/Menu';
+import HomeIcon from '@mui/icons-material/Home';
+import CategoryIcon from '@mui/icons-material/Category';
+import ContactSupportIcon from '@mui/icons-material/ContactSupport';
+import coverImg from '../assets/cover-250.webp'
 
 export default function Header() {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+  
+  // কোন মেনুটা এখন সিলেক্ট করা আছে, তা মনে রাখার জন্য স্টেট (ডিফল্ট 'Home' রাখা হলো)
+  const [activeItem, setActiveItem] = useState('Home'); 
 
-  // ড্রয়ার খোলা ও বন্ধ করার ফাংশন
   const toggleDrawer = (open) => () => {
     setIsDrawerOpen(open);
   };
@@ -16,9 +23,10 @@ export default function Header() {
   return (
     <>
       <AppBar position="static" sx={{
-        backgroundColor:"#FFFFFF",
-        color:"black"
-      }} elevation={1}>
+        backgroundColor: "#FFFFFF",
+        color: "black",
+        boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.05)"
+      }} elevation={0}>
         <Toolbar sx={{ display: 'flex', justifyContent: 'space-between' }}>
           
           <Box sx={{ width: '50px', display: 'flex', justifyContent: 'flex-start' }}>
@@ -28,7 +36,7 @@ export default function Header() {
           </Box>
 
           <Typography variant="h6" component="div" sx={{ textAlign: 'center', flexGrow: 1, fontWeight: 'bold' }}>
-           www.rojerbajar.com
+          www.rojerbajar.com
           </Typography>
 
           <Box sx={{ width: '50px', display: 'flex', justifyContent: 'flex-end' }}>
@@ -38,55 +46,112 @@ export default function Header() {
         </Toolbar>
       </AppBar>
 
-      {/* ১. কালো ছায়া (Backdrop) - ড্রয়ার খুললে পেছনের অংশ অন্ধকার হবে */}
       {isDrawerOpen && (
         <Box 
-          onClick={toggleDrawer(false)} // কালো অংশে ক্লিক করলে ড্রয়ার বন্ধ হবে
+          onClick={toggleDrawer(false)}
           sx={{
-            position: 'absolute',
+            position: 'fixed',
             top: 0,
             left: 0,
-            width: '100%',
-            height: '100%',
-            bgcolor: 'rgba(0, 0, 0, 0.5)', // অর্ধেক স্বচ্ছ কালো রঙ
-            zIndex: 1100, // অ্যাপ বারের উপরে থাকার জন্য
+            width: '100vw',
+            height: '100vh',
+            bgcolor: 'rgba(0, 0, 0, 0.4)',
+            zIndex: 1100, 
           }}
         />
       )}
 
-      {/* ২. আমাদের নিজেদের বানানো ড্রয়ার (Custom Drawer) */}
-      {/* এখানে ভ্যালুগুলো পাঠানো হয়েছে */}
-      <Sidebar isDrawerOpen={isDrawerOpen} toggleDrawer={toggleDrawer} />
+      {/* Sidebar এ activeItem এবং setActiveItem পাঠানো হলো */}
+      <Sidebar 
+        isDrawerOpen={isDrawerOpen} 
+        toggleDrawer={toggleDrawer} 
+        activeItem={activeItem} 
+        setActiveItem={setActiveItem} 
+      />
       
     </>
   );
 }
 
 
-const Sidebar = ({isDrawerOpen, toggleDrawer}) => {
+const Sidebar = ({ isDrawerOpen, toggleDrawer, activeItem, setActiveItem }) => {
+  
+  const menuItems = [
+    { text: 'Home', icon: <HomeIcon /> },
+    { text: 'Products', icon: <CategoryIcon /> },
+    { text: 'Contact Us', icon: <ContactSupportIcon /> }
+  ];
+
   return (
+    <Box
+      sx={{
+        position: 'fixed',
+        top: 0,
+        left: isDrawerOpen ? 0 : '-280px',
+        width: '280px',
+        height: '100vh',
+        bgcolor: 'white',
+        color: 'black',
+        transition: 'left 0.3s ease-in-out', 
+        zIndex: 1200, 
+        boxShadow: isDrawerOpen ? "4px 0px 15px rgba(0,0,0,0.1)" : "none",
+        display: 'flex',
+        flexDirection: 'column'
+      }}
+    >
       <Box
-        sx={{
-          position: 'absolute',
-          top: 0,
-          // ড্রয়ার খোলা থাকলে বাম দিক থেকে 0 তে আসবে, নাহলে -250px অর্থাৎ স্ক্রিনের বাইরে থাকবে
-          left: isDrawerOpen ? 0 : '-250px', 
-          width: '250px',
-          height: '100%',
-          bgcolor: 'white',
-          color:'black',
-          transition: 'left 0.2s ease-in-out', // সুন্দর করে অ্যানিমেশন হয়ে বের হওয়ার জন্য
-          zIndex: 1200, // কালো ছায়ারও উপরে থাকার জন্য
-          boxShadow: 3,
-        }}
-      >
-        <List onClick={toggleDrawer(false)}>
-          {['Home', 'Products', 'Offers', 'Contact Us'].map((text) => (
-            <ListItem button key={text}>
-              <ListItemText primary={text} />
+        component="img"
+        src={coverImg} 
+        alt="Banner"
+        sx={{ width: '100%', height: 180 }}
+      />
+      
+      <List sx={{ flexGrow: 1, pt: 2, px: 2 }}> {/* px: 2 দিয়ে দুপাশে একটু জায়গা রাখা হয়েছে */}
+        {menuItems.map((item) => {
+          
+          // চেক করা হচ্ছে এই আইটেমটি অ্যাকটিভ কিনা
+          const isActive = activeItem === item.text; 
+
+          return (
+            <ListItem disablePadding key={item.text} sx={{ mb: 1 }}>
+              <ListItemButton 
+                onClick={() => {
+                  setActiveItem(item.text); // ক্লিক করলে এই আইটেমটি অ্যাকটিভ হবে
+                  toggleDrawer(false)(); // এবং ড্রয়ার বন্ধ হয়ে যাবে
+                }}
+                sx={{ 
+                  borderRadius: '10px', // কোণাগুলো সুন্দর গোল করা হয়েছে
+                  bgcolor: isActive ? '#e3f2fd' : 'transparent', // অ্যাকটিভ হলে হালকা নীল ব্যাকগ্রাউন্ড
+                  color: isActive ? '#1976d2' : '#333', // অ্যাকটিভ হলে লেখা নীল হবে
+                  '&:hover': { 
+                    bgcolor: isActive ? '#e3f2fd' : '#f5f5f5' // হোভার করলে কেমন দেখাবে
+                  }
+                }}
+              >
+                <ListItemIcon sx={{ 
+                  minWidth: '40px', 
+                  color: isActive ? '#1976d2' : '#757575' // অ্যাকটিভ হলে আইকন নীল হবে, নাহলে ছাই রঙ
+                }}>
+                  {item.icon}
+                </ListItemIcon>
+                
+                <ListItemText 
+                  primary={item.text} 
+                  primaryTypographyProps={{ 
+                    fontWeight: isActive ? 600 : 500 // অ্যাকটিভ হলে লেখা একটু মোটা (বোল্ড) দেখাবে
+                  }} 
+                />
+              </ListItemButton>
             </ListItem>
-          ))}
-        </List>
+          );
+        })}
+      </List>
+
+      <Box sx={{ p: 2, textAlign: 'center', borderTop: '1px solid #eee' }}>
+        <Typography variant='body2' color="text.secondary">
+          Made By : <strong>Faruk Sardar</strong>
+        </Typography>
       </Box>
-  )
+    </Box>
+  );
 }
