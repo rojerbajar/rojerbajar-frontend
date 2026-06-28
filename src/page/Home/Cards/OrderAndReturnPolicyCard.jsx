@@ -3,178 +3,98 @@ import {
   CardContent,
   Typography,
   Box,
+  Stack,
+  Avatar
 } from '@mui/material';
+
+// ১০০% নিরাপদ আইকন ইমপোর্ট করা হলো
+import AssignmentReturnTwoToneIcon from '@mui/icons-material/AssignmentReturnTwoTone';
+import RuleTwoToneIcon from '@mui/icons-material/RuleTwoTone';
+import HelpOutlineTwoToneIcon from '@mui/icons-material/HelpOutlineTwoTone';
+import EditNoteTwoToneIcon from '@mui/icons-material/EditNoteTwoTone';
+import WorkspacePremiumTwoToneIcon from '@mui/icons-material/WorkspacePremiumTwoTone';
 
 export default function OrderAndReturnPolicyCard() {
   return (
-    <Box 
-      sx={{ 
-        display: 'flex', 
-        justifyContent: 'center', 
-        alignItems: 'center',
-        py: 1,
-        px: { xs: 1 },
-      }}
-    >
+    <Box sx={{ display: 'flex', justifyContent: 'center', py: 1, px: { xs: 1 } }}>
       <Card 
         sx={{ 
           maxWidth: 700, 
           width: '100%',
           borderRadius: { xs: 3, sm: 4 }, 
-          boxShadow: '0 10px 30px rgba(78, 44, 29, 0.1)', 
-          overflow: 'hidden'
+          boxShadow: '0 12px 35px rgba(78, 44, 29, 0.08)', 
+          border: '1px solid #f0e6da',
+          bgcolor: '#ffffff'
         }}
       >
-        <CardContent sx={{ p: { xs: 2.5, sm: 4 }, bgcolor: '#ffffff' }}>
+        <CardContent sx={{ p: { xs: 2, sm: 3 } }}>
           
-          {/* প্রধান হেডিং */}
-          <Box sx={{ mb: 4, textAlign: 'left' }}>
-            <Typography 
-              component="h2"
-              fontWeight="900" 
-              sx={{ 
-                color: '#4e2c1d', // গাঢ় খয়েরি রঙ
-                fontSize: { xs: '1.4rem', sm: '1.7rem' },
-                position: 'relative',
-                display: 'inline-block',
-                lineHeight: 1.4,
-                '&::after': {
-                  content: '""',
-                  display: 'block',
-                  width: '70px',
-                  height: '4px',
-                  backgroundColor: '#d35400', // নিচে কমলা রঙের সুন্দর দাগ
-                  mt: 1.5,
-                  borderRadius: '2px'
-                }
-              }}
-            >
-              ৪. অর্ডার ও রিটার্ন সংক্রান্ত একটি বিনীত অনুরোধ
-            </Typography>
+          {/* হেডিং সেকশন */}
+          <Box sx={{ mb: 4, textAlign: 'left', display: 'flex', alignItems: 'flex-start', gap: 2 }}>
+            <Avatar sx={{ bgcolor: '#fff4e6', color: '#d35400', width: 50, height: 50 }}>
+              <AssignmentReturnTwoToneIcon fontSize="medium" />
+            </Avatar>
+            <Box>
+              <Typography component="h2" fontWeight="900" sx={{ color: '#4e2c1d', fontSize: { xs: '1.4rem', sm: '1.7rem' }, lineHeight: 1.3 }}>
+                অর্ডার ও রিটার্ন সংক্রান্ত অনুরোধ
+              </Typography>
+              <Typography variant="subtitle2" sx={{ color: '#d35400', fontWeight: 'bold' }}>
+                বিনীত কিছু নিয়মাবলী
+              </Typography>
+            </Box>
           </Box>
 
-          {/* ভূমিকা প্যারাগ্রাফ ১ */}
-          <Typography 
-            sx={{ 
-              color: '#444444', 
-              mb: 2.5, 
-              fontSize: { xs: '0.95rem', sm: '1.05rem' },
-              lineHeight: 1.8,
-              textAlign: 'left'
-            }}
-          >
-            আমাদের কাছে আপনাদের প্রতিটি অর্ডারই খুব মূল্যবান। তবে আপনাদের কাছে আমাদের একটি ছোট্ট ও বিনীত অনুরোধ রয়েছে।
+          <Typography sx={{ color: '#444444', mb: 3, fontSize: { xs: '0.95rem', sm: '1.05rem' }, lineHeight: 1.8, textAlign: 'left' }}>
+            আমাদের কাছে আপনাদের প্রতিটি অর্ডারই খুব মূল্যবান। তবে তাজা ও পচনশীল পণ্য হওয়ার কারণে আমাদের কিছু নিয়ম মেনে চলতে হয়।
           </Typography>
 
-          {/* ভূমিকা প্যারাগ্রাফ ২ (হাইলাইট করা অংশ) */}
-          <Typography 
-            sx={{ 
-              color: '#444444', 
-              mb: 4, 
-              fontSize: { xs: '0.95rem', sm: '1.05rem' },
-              lineHeight: 1.8,
-              textAlign: 'left'
-            }}
-          >
-            যেহেতু আমরা প্রতিদিনের একদম তাজা শাক-সবজি, কাঁচা মাছ ও অন্যান্য জিনিসপত্র আপনাদের কাছে পৌঁছে দিই, তাই একবার ডেলিভারি হয়ে যাওয়ার পর জিনিসগুলো <strong>রিটার্ন বা ফেরত নেওয়ার কোনো ব্যবস্থা আপাতত আমাদের নেই</strong>।
-          </Typography>
+          <Stack spacing={3}>
+            
+            {/* রিটার্ন পলিসি */}
+            <Box sx={{ display: 'flex', gap: 2, alignItems: 'flex-start' }}>
+              <RuleTwoToneIcon sx={{ color: '#d35400', mt: 0.3, fontSize: 28 }} />
+              <Box sx={{ textAlign: 'left' }}>
+                <Typography fontWeight="800" sx={{ color: '#4e2c1d' }}>রিটার্ন বা ফেরত নীতি:</Typography>
+                <Typography sx={{ color: '#444444', fontSize: '0.95rem' }}>
+                  যেহেতু আমরা প্রতিদিনের একদম তাজা শাক-সবজি, কাঁচা মাছ ও অন্যান্য জিনিসপত্র সরবরাহ করি, তাই ডেলিভারি হয়ে যাওয়ার পর জিনিসগুলো <strong>রিটার্ন বা ফেরত নেওয়ার কোনো ব্যবস্থা আপাতত আমাদের নেই।</strong>
+                </Typography>
+              </Box>
+            </Box>
 
-          {/* পয়েন্ট ১: কেন এই নিয়ম? */}
-          <Box sx={{ display: 'flex', mb: 3.5 }}>
-            <Typography sx={{ mr: 1.5, fontSize: '1.4rem', mt: -0.5 }}>❓</Typography>
-            <Box>
-              <Typography 
-                component="h3"
-                fontWeight="800" 
-                sx={{ 
-                  color: '#4e2c1d', 
-                  fontSize: { xs: '1.05rem', sm: '1.15rem' }, 
-                  mb: 1, 
-                  textAlign: 'left' 
-                }}
-              >
-                কেন এই নিয়ম?
-              </Typography>
-              <Typography 
-                sx={{ 
-                  color: '#444444', 
-                  fontSize: { xs: '0.95rem', sm: '1.05rem' },
-                  lineHeight: 1.8,
-                  textAlign: 'left'
-                }}
-              >
-                কাঁচা জিনিস একবার হাতবদল হলে বা অনেকক্ষণ বাইরে থাকলে তার সতেজতা ও গুণমান নষ্ট হওয়ার ভয় থাকে। আমাদের মূল লক্ষ্যই হলো সবার হাতে একদম তাজা জিনিস তুলে দেওয়া।
+            {/* কেন এই নিয়ম? */}
+            <Box sx={{ display: 'flex', gap: 2, alignItems: 'flex-start' }}>
+              <HelpOutlineTwoToneIcon sx={{ color: '#d35400', mt: 0.3, fontSize: 28 }} />
+              <Box sx={{ textAlign: 'left' }}>
+                <Typography fontWeight="800" sx={{ color: '#4e2c1d' }}>কেন এই নিয়ম?</Typography>
+                <Typography sx={{ color: '#444444', fontSize: '0.95rem' }}>
+                  কাঁচা জিনিস একবার হাতবদল হলে বা দীর্ঘক্ষণ বাইরে থাকলে তার সতেজতা ও গুণমান নষ্ট হয়ে যায়। আমরা সবসময় আপনাদের হাতে একদম ফ্রেশ পণ্য তুলে দিতে বদ্ধপরিকর।
+                </Typography>
+              </Box>
+            </Box>
+
+            {/* অর্ডার করার অনুরোধ */}
+            <Box sx={{ display: 'flex', gap: 2, alignItems: 'flex-start' }}>
+              <EditNoteTwoToneIcon sx={{ color: '#d35400', mt: 0.3, fontSize: 28 }} />
+              <Box sx={{ textAlign: 'left' }}>
+                <Typography fontWeight="800" sx={{ color: '#4e2c1d' }}>আমাদের বিনীত অনুরোধ:</Typography>
+                <Typography sx={{ color: '#444444', fontSize: '0.95rem' }}>
+                  অর্ডার চূড়ান্ত করার আগে আপনারা একটু সময় নিয়ে, ভালোভাবে চিন্তা করে বাজারের লিস্টটি আমাদের দেবেন। যতটুকু প্রয়োজন, ঠিক ততটুকুই অর্ডার করুন।
+                </Typography>
+              </Box>
+            </Box>
+
+            {/* হাইলাইট বক্স: প্রতিশ্রুতি */}
+            <Box sx={{ bgcolor: '#fffcf7', p: 2.5, borderRadius: 2, border: '1px dashed #e0d4c8' }}>
+              <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5, mb: 1 }}>
+                <WorkspacePremiumTwoToneIcon sx={{ color: '#d35400', fontSize: 26 }} />
+                <Typography fontWeight="800" sx={{ color: '#4e2c1d' }}>আমাদের প্রতিশ্রুতি:</Typography>
+              </Box>
+              <Typography sx={{ color: '#444444', fontSize: '0.95rem', lineHeight: 1.7,textAlign:"start" }}>
+                জিনিস ফেরত দেওয়ার প্রয়োজন যেন না হয়, সেটিই আমাদের লক্ষ্য। আপনি বাজারে নিজে গিয়ে যেমন সবচেয়ে ভালো জিনিসটা বেছে নিতেন, আমরাও ঠিক সেভাবেই সেরা পণ্যটি আপনার জন্য গুছিয়ে পাঠাব। আপনার বিশ্বাসই আমাদের সবচেয়ে বড় সম্বল।
               </Typography>
             </Box>
-          </Box>
 
-          {/* পয়েন্ট ২: আমাদের অনুরোধ */}
-          <Box sx={{ display: 'flex', mb: 3.5 }}>
-            <Typography sx={{ mr: 1.5, fontSize: '1.4rem', mt: -0.5 }}>🙏</Typography>
-            <Box>
-              <Typography 
-                component="h3"
-                fontWeight="800" 
-                sx={{ 
-                  color: '#4e2c1d', 
-                  fontSize: { xs: '1.05rem', sm: '1.15rem' }, 
-                  mb: 1, 
-                  textAlign: 'left' 
-                }}
-              >
-                আমাদের অনুরোধ:
-              </Typography>
-              <Typography 
-                sx={{ 
-                  color: '#444444', 
-                  fontSize: { xs: '0.95rem', sm: '1.05rem' },
-                  lineHeight: 1.8,
-                  textAlign: 'left'
-                }}
-              >
-                অর্ডার চূড়ান্ত করার আগে আপনারা একটু সময় নিয়ে, ভালোভাবে চিন্তা করে আপনাদের বাজারের লিস্টটি আমাদের দেবেন। ঠিক যতটুকু প্রয়োজন, ততটুকুই অর্ডার করুন।
-              </Typography>
-            </Box>
-          </Box>
-
-          {/* পয়েন্ট ৩: আমাদের প্রতিশ্রুতি */}
-          <Box 
-            sx={{ 
-              display: 'flex', 
-              bgcolor: '#fff9f5', // একটু আলাদা দেখানোর জন্য হালকা ব্যাকগ্রাউন্ড
-              p: 2, 
-              borderRadius: 2,
-              border: '1px dashed #e0d4c8',
-              mb: 0
-            }}
-          >
-            <Typography sx={{ mr: 1.5, fontSize: '1.4rem', mt: -0.5 }}>🤝</Typography>
-            <Box>
-              <Typography 
-                component="h3"
-                fontWeight="800" 
-                sx={{ 
-                  color: '#d35400', // এটি গুরুত্বপূর্ণ তাই কমলা রঙ
-                  fontSize: { xs: '1.05rem', sm: '1.15rem' }, 
-                  mb: 1, 
-                  textAlign: 'left' 
-                }}
-              >
-                আমাদের প্রতিশ্রুতি:
-              </Typography>
-              <Typography 
-                sx={{ 
-                  color: '#444444', 
-                  fontSize: { xs: '0.95rem', sm: '1.05rem' },
-                  lineHeight: 1.8,
-                  textAlign: 'left'
-                }}
-              >
-                জিনিস ফেরত দেওয়ার সুযোগ নেই বলে একটুও চিন্তা করবেন না! আমরা কথা দিচ্ছি, বাজারে গিয়ে আপনি নিজের হাতে যেমন সবচেয়ে ভালো জিনিসটা বেছে নিতেন, আমরাও ঠিক সেভাবেই সেরা ও তাজা জিনিসটাই আপনার জন্য গুছিয়ে পাঠাব। আমাদের জিনিস এতই ভালো হবে যে, আপনার ফেরত দেওয়ার কোনো প্রয়োজনই পড়বে না! আপনাদের বিশ্বাসই আমাদের সবচেয়ে বড় সম্বল।
-              </Typography>
-            </Box>
-          </Box>
-
+          </Stack>
         </CardContent>
       </Card>
     </Box>
