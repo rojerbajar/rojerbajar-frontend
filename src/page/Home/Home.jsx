@@ -26,8 +26,7 @@ import { useShareCard } from "../hooks/useShareCard";
 function Home() {
   const { shareCard } = useShareCard();
 
-
-  const [open, setOpen] = useState(true);
+  const [open, setOpen] = useState(false);
   const handleClose = () => setOpen(false);
   return (
     <Box sx={{ overflow: "hidden", boxSizing: "border-box" }}>
