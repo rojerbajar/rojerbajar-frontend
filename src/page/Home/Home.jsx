@@ -28,16 +28,26 @@ function Home() {
 
   const [open, setOpen] = useState(false);
   const handleClose = () => setOpen(false);
+
   useEffect(() => {
+    // ১. হ্যাশ চেক করা
     const hash = window.location.hash;
+  
+    // ২. শুধুমাত্র যদি হ্যাশ থাকে তবেই কোডটি রান করবে
     if (hash) {
       const id = hash.replace('#', '');
       const element = document.getElementById(id);
-      setTimeout(() => {
-         element?.scrollIntoView({ behavior: 'smooth' });
-      }, 500); // ৫০০ মিলিসেকেন্ড অপেক্ষা করবে যাতে কার্ড লোড হওয়ার সময় পায়
+  
+      // ৩. এলিমেন্টটি খুঁজে পেলে তবেই স্ক্রল হবে
+      if (element) {
+        setTimeout(() => {
+          element.scrollIntoView({ behavior: 'smooth' });
+        }, 500);
+      }
     }
   }, []);
+
+  
   return (
     <Box sx={{ overflow: "hidden", boxSizing: "border-box" }}>
       <Box component="img" src={bannerImg} alt="Banner" sx={{ width: "95%" }} />
