@@ -18,10 +18,10 @@ import PaymentOptionsCard from "./Cards/PaymentOptionsCard";
 import OrderAndReturnPolicyCard from "./Cards/OrderAndReturnPolicyCard";
 import CustomerSupportCard from "./Cards/CustomerSupportCard";
 import ContactUsCard from "./Cards/ContactUsCard";
-import { useState } from "react";
+import { useState,useEffect } from "react";
 import { Button, Modal, Typography } from "@mui/material";
 
-import { useShareCard,useEffect } from "../hooks/useShareCard";
+import { useShareCard } from "../hooks/useShareCard";
 
 function Home() {
   const { shareCard } = useShareCard();
