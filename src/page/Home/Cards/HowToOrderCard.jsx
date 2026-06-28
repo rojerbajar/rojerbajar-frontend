@@ -17,7 +17,7 @@ import CampaignTwoToneIcon from '@mui/icons-material/CampaignTwoTone';
 
 export default function HowToOrderCard() {
   return (
-    <Box sx={{ display: 'flex', justifyContent: 'center', py: 1, px: { xs: 1 } }}>
+    <Box id="order" sx={{ display: 'flex', justifyContent: 'center', py: 1, px: { xs: 1 } }}>
       <Card 
         sx={{ 
           maxWidth: 700, 
