@@ -21,13 +21,23 @@ import ContactUsCard from "./Cards/ContactUsCard";
 import { useState } from "react";
 import { Button, Modal, Typography } from "@mui/material";
 
-import { useShareCard } from "../hooks/useShareCard";
+import { useShareCard,useEffect } from "../hooks/useShareCard";
 
 function Home() {
   const { shareCard } = useShareCard();
 
   const [open, setOpen] = useState(false);
   const handleClose = () => setOpen(false);
+  useEffect(() => {
+    const hash = window.location.hash;
+    if (hash) {
+      const id = hash.replace('#', '');
+      const element = document.getElementById(id);
+      setTimeout(() => {
+         element?.scrollIntoView({ behavior: 'smooth' });
+      }, 500); // ৫০০ মিলিসেকেন্ড অপেক্ষা করবে যাতে কার্ড লোড হওয়ার সময় পায়
+    }
+  }, []);
   return (
     <Box sx={{ overflow: "hidden", boxSizing: "border-box" }}>
       <Box component="img" src={bannerImg} alt="Banner" sx={{ width: "95%" }} />
