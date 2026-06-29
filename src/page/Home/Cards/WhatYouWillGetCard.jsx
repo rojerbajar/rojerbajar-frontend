@@ -15,18 +15,10 @@ import RestaurantTwoToneIcon from '@mui/icons-material/RestaurantTwoTone';
 import AccountBalanceWalletTwoToneIcon from '@mui/icons-material/AccountBalanceWalletTwoTone'; 
 import HandshakeTwoToneIcon from '@mui/icons-material/HandshakeTwoTone';
 
-export default function WhatYouWillGetCard() {
+export default function WhatYouWillGetCard({id}) {
   return (
-    <Box 
-      sx={{ 
-        display: 'flex', 
-        justifyContent: 'center', 
-        alignItems: 'center',
-        py: 1,
-        px: { xs: 1 },
-      }}
-    >
-      <Card 
+ 
+      <Card id ={id}
         sx={{ 
           maxWidth: 700, 
           width: '100%',
@@ -140,6 +132,5 @@ export default function WhatYouWillGetCard() {
           </Stack>
         </CardContent>
       </Card>
-    </Box>
   );
 }

@@ -14,10 +14,9 @@ import HelpOutlineTwoToneIcon from '@mui/icons-material/HelpOutlineTwoTone';
 import EditNoteTwoToneIcon from '@mui/icons-material/EditNoteTwoTone';
 import WorkspacePremiumTwoToneIcon from '@mui/icons-material/WorkspacePremiumTwoTone';
 
-export default function OrderAndReturnPolicyCard() {
+export default function OrderAndReturnPolicyCard({id}) {
   return (
-    <Box sx={{ display: 'flex', justifyContent: 'center', py: 1, px: { xs: 1 } }}>
-      <Card 
+      <Card id ={id}
         sx={{ 
           maxWidth: 700, 
           width: '100%',
@@ -97,6 +96,5 @@ export default function OrderAndReturnPolicyCard() {
           </Stack>
         </CardContent>
       </Card>
-    </Box>
   );
 }

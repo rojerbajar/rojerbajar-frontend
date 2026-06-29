@@ -14,17 +14,10 @@ import AccountBalanceWalletTwoToneIcon from '@mui/icons-material/AccountBalanceW
 import LocalFloristTwoToneIcon from '@mui/icons-material/LocalFloristTwoTone';
 import LocalShippingTwoToneIcon from '@mui/icons-material/LocalShippingTwoTone';
 
-export default function GoalsAndPromisesCard() {
+export default function GoalsAndPromisesCard({id}) {
   return (
-    <Box 
-      sx={{ 
-        display: 'flex', 
-        justifyContent: 'center', 
-        alignItems: 'center',
-        px: { xs: 1 },
-      }}
-    >
-      <Card 
+
+      <Card id ={id}
         sx={{ 
           maxWidth: 700, 
           width: '100%',
@@ -184,6 +177,5 @@ export default function GoalsAndPromisesCard() {
           </Stack>
         </CardContent>
       </Card>
-    </Box>
   );
 }

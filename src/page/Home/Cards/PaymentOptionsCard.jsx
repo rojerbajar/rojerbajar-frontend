@@ -13,10 +13,10 @@ import PaidTwoToneIcon from '@mui/icons-material/PaidTwoTone';
 import QrCode2TwoToneIcon from '@mui/icons-material/QrCode2TwoTone';
 import ErrorOutlineTwoToneIcon from '@mui/icons-material/ErrorOutlineTwoTone';
 
-export default function PaymentOptionsCard() {
+export default function PaymentOptionsCard({id}) {
   return (
-    <Box sx={{ display: 'flex', justifyContent: 'center', px: { xs: 1 } }}>
-      <Card 
+  
+      <Card id ={id}
         sx={{ 
           maxWidth: 700, 
           width: '100%',
@@ -85,6 +85,5 @@ export default function PaymentOptionsCard() {
           </Stack>
         </CardContent>
       </Card>
-    </Box>
   );
 }

@@ -16,10 +16,9 @@ import PublicTwoToneIcon from '@mui/icons-material/PublicTwoTone';
 import CampaignTwoToneIcon from '@mui/icons-material/CampaignTwoTone';
 import WhatsAppIcon from '@mui/icons-material/WhatsApp'; 
 
-export default function UpdatedPriceListCard() {
+export default function UpdatedPriceListCard({id}) {
   return (
-    <Box sx={{ display: 'flex', justifyContent: 'center',  px: { xs: 1 } }}>
-      <Card 
+      <Card  id ={id}
         sx={{ 
           maxWidth: 700, 
           width: '100%',
@@ -105,6 +104,5 @@ export default function UpdatedPriceListCard() {
 
         </CardContent>
       </Card>
-    </Box>
   );
 }

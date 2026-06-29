@@ -13,18 +13,10 @@ import HandshakeTwoToneIcon from '@mui/icons-material/HandshakeTwoTone';
 import HomeTwoToneIcon from '@mui/icons-material/HomeTwoTone';
 import FavoriteTwoToneIcon from '@mui/icons-material/FavoriteTwoTone';
 
-export default function TrustAndResponsibilityCard() {
+export default function TrustAndResponsibilityCard({id}) {
   return (
-    <Box 
-      sx={{ 
-        display: 'flex', 
-        justifyContent: 'center', 
-        alignItems: 'center',
-        py: 1,
-        px: { xs: 1 },
-      }}
-    >
-      <Card 
+
+      <Card id ={id}
         sx={{ 
           maxWidth: 700, 
           width: '100%',
@@ -187,6 +179,5 @@ export default function TrustAndResponsibilityCard() {
 
         </CardContent>
       </Card>
-    </Box>
   );
 }

@@ -14,18 +14,10 @@ import UmbrellaTwoToneIcon from '@mui/icons-material/UmbrellaTwoTone';
 import LocalMallTwoToneIcon from '@mui/icons-material/LocalMallTwoTone';
 import PriceCheckTwoToneIcon from '@mui/icons-material/PriceCheckTwoTone';
 
-export default function BenefitsCard() {
+export default function BenefitsCard({id}) {
   return (
-    <Box 
-      sx={{ 
-        display: 'flex', 
-        justifyContent: 'center', 
-        alignItems: 'center',
-  
-        px: { xs: 1 },
-      }}
-    >
-      <Card 
+
+      <Card id ={id}
         sx={{ 
           maxWidth: 700, 
           width: '100%',
@@ -129,6 +121,5 @@ export default function BenefitsCard() {
           </Stack>
         </CardContent>
       </Card>
-    </Box>
   );
 }

@@ -17,10 +17,9 @@ import PublicTwoToneIcon from '@mui/icons-material/PublicTwoTone';
 import CampaignTwoToneIcon from '@mui/icons-material/CampaignTwoTone';
 import LightbulbTwoToneIcon from '@mui/icons-material/LightbulbTwoTone';
 
-export default function ContactUsCard() {
+export default function ContactUsCard({id}) {
   return (
-    <Box sx={{ display: 'flex', justifyContent: 'center', px: { xs: 1 } }}>
-      <Card 
+      <Card id ={id}
         sx={{ 
           maxWidth: 700, 
           width: '100%',
@@ -114,6 +113,5 @@ export default function ContactUsCard() {
           </Stack>
         </CardContent>
       </Card>
-    </Box>
   );
 }

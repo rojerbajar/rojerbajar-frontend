@@ -13,18 +13,10 @@ import CampaignTwoToneIcon from '@mui/icons-material/CampaignTwoTone';
 import QuestionAnswerTwoToneIcon from '@mui/icons-material/QuestionAnswerTwoTone';
 import DevicesTwoToneIcon from '@mui/icons-material/DevicesTwoTone';
 
-export default function RealPhotosCard() {
+export default function RealPhotosCard({id}) {
   return (
-    <Box 
-      sx={{ 
-        display: 'flex', 
-        justifyContent: 'center', 
-        alignItems: 'center',
-        py: 1,
-        px: { xs: 1 },
-      }}
-    >
-      <Card 
+
+      <Card id ={id}
         sx={{ 
           maxWidth: 700, 
           width: '100%',
@@ -181,6 +173,5 @@ export default function RealPhotosCard() {
 
         </CardContent>
       </Card>
-    </Box>
   );
 }

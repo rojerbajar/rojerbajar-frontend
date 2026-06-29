@@ -15,18 +15,10 @@ import GroupsTwoToneIcon from '@mui/icons-material/GroupsTwoTone';
 import ExploreTwoToneIcon from '@mui/icons-material/ExploreTwoTone';
 import VolunteerActivismTwoToneIcon from '@mui/icons-material/VolunteerActivismTwoTone';
 
-export default function DeliveryAreaCard() {
+export default function DeliveryAreaCard({id}) {
   return (
-    <Box 
-      sx={{ 
-        display: 'flex', 
-        justifyContent: 'center', 
-        alignItems: 'center',
-        py: 1,
-        px: { xs: 1 },
-      }}
-    >
-      <Card 
+
+      <Card id ={id}
         sx={{ 
           maxWidth: 700, 
           width: '100%',
@@ -172,6 +164,5 @@ export default function DeliveryAreaCard() {
 
         </CardContent>
       </Card>
-    </Box>
   );
 }

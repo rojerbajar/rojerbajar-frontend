@@ -17,18 +17,10 @@ import SpaTwoToneIcon from '@mui/icons-material/SpaTwoTone';
 import HomeTwoToneIcon from '@mui/icons-material/HomeTwoTone';
 import FavoriteTwoToneIcon from '@mui/icons-material/FavoriteTwoTone';
 
-export default function ReasonsCard() {
+export default function ReasonsCard({id}) {
   return (
-    <Box 
-      sx={{ 
-        display: 'flex', 
-        justifyContent: 'center', 
-        alignItems: 'center',
-        py: 1,
-        px: { xs: 1 },
-      }}
-    >
-      <Card 
+
+      <Card id ={id}
         sx={{ 
           maxWidth: 700, 
           width: '100%',
@@ -177,6 +169,5 @@ export default function ReasonsCard() {
 
         </CardContent>
       </Card>
-    </Box>
   );
 }

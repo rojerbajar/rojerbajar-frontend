@@ -18,7 +18,7 @@ import CampaignTwoToneIcon from "@mui/icons-material/CampaignTwoTone";
 import { useLongPress } from "../../hooks/useLongPress";
 import { useShareCard } from "../../hooks/useShareCard";
 
-export default function HowToOrderCard() {
+export default function HowToOrderCard({id}) {
   // ১. বর্তমান URL-এর সাথে #how-to-order যুক্ত করা
   const baseUrl = window.location.origin + window.location.pathname;
 
@@ -39,11 +39,7 @@ export default function HowToOrderCard() {
   }, 2000); // ২ সেকেন্ড সময়
 
   return (
-    <Box
-      id="how-to-order"
-      sx={{ display: "flex", justifyContent: "center", py: 1, px: { xs: 1 } }}
-    >
-      <Card
+      <Card id ={id}
         sx={{
           maxWidth: 700,
           width: "100%",
@@ -231,6 +227,5 @@ export default function HowToOrderCard() {
           </Stack>
         </CardContent>
       </Card>
-    </Box>
   );
 }

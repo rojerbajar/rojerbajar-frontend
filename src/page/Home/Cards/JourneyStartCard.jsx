@@ -15,17 +15,9 @@ import LocalFloristTwoToneIcon from '@mui/icons-material/LocalFloristTwoTone';
 import ShoppingCartTwoToneIcon from '@mui/icons-material/ShoppingCartTwoTone';
 import VolunteerActivismTwoToneIcon from '@mui/icons-material/VolunteerActivismTwoTone';
 
-export default function JourneyStartCard() {
+export default function JourneyStartCard({id}) {
   return (
-    <Box 
-      sx={{ 
-        display: 'flex', 
-        justifyContent: 'center', 
-        alignItems: 'center',
-        px: { xs: 1 },
-      }}
-    >
-      <Card 
+      <Card  id ={id}
         sx={{ 
           maxWidth: 700, 
           width: '100%',
@@ -147,6 +139,5 @@ export default function JourneyStartCard() {
 
         </CardContent>
       </Card>
-    </Box>
   );
 }

@@ -13,18 +13,9 @@ import ListAltTwoToneIcon from '@mui/icons-material/ListAltTwoTone';
 import LocalShippingTwoToneIcon from '@mui/icons-material/LocalShippingTwoTone';
 import AccessTimeTwoToneIcon from '@mui/icons-material/AccessTimeTwoTone';
 
-export default function OrderDeliveryTimeCard() {
+export default function OrderDeliveryTimeCard({id}) {
   return (
-    <Box 
-      sx={{ 
-        display: 'flex', 
-        justifyContent: 'center', 
-        alignItems: 'center',
- 
-        px: { xs: 1 },
-      }}
-    >
-      <Card 
+      <Card id ={id}
         sx={{ 
           maxWidth: 700, 
           width: '100%',
@@ -155,6 +146,5 @@ export default function OrderDeliveryTimeCard() {
           </Stack>
         </CardContent>
       </Card>
-    </Box>
   );
 }
