@@ -24,22 +24,44 @@ import CustomerSupportCard from "./Cards/CustomerSupportCard";
 import ContactUsCard from "./Cards/ContactUsCard";
 
 import { useShareCard } from "../hooks/useShareCard";
+import { useSearchParams } from 'react-router-dom';
 
 function Home() {
   const { shareCard } = useShareCard();
   const [open, setOpen] = useState(false);
   const handleClose = () => setOpen(false);
 
-  const { hash } = useLocation();
-  useEffect(() => {
-    const id = hash.replace("#", "");
-    if (hash) {
-      const element = document.getElementById(id);
-      if (element) {
-        element.scrollIntoView({ behavior: "smooth" });
-      }
-    }
-  }, [hash]);
+const location = useLocation();
+
+useEffect(() => {
+  if (location.state?.scrollTo) {
+    const element = document.getElementById(location.state.scrollTo);
+    element?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+}, [location.state]); // প্রতিবার লোকেশন স্টেট আপডেট হলে স্ক্রল হবে
+
+  // const { hash } = useLocation();
+  // useEffect(() => {
+  //   const id = hash.replace("#", "");
+  //   if (hash) {
+  //     const element = document.getElementById(id);
+  //     if (element) {
+  //       element.scrollIntoView({ behavior: "smooth" });
+  //     }
+  //   }
+  // // }, [hash]);
+  // const [searchParams] = useSearchParams();
+  // const scrollToId = searchParams.get('scrollTo'); // ইউআরএল থেকে আইডিটি নিন
+
+  // useEffect(() => {
+  //   alert("is your id ", scrollToId)
+  //   if (scrollToId) {
+  //     const element = document.getElementById(scrollToId);
+  //     if (element) {
+  //       element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  //     }
+  //   }
+  // }, [scrollToId]); // যখনই scrollToId পরিবর্তন হবে, তখনই স্ক্রল করবে
 
   return (
     <Box sx={{ overflow: "hidden", boxSizing: "border-box" }}>
