@@ -67,7 +67,7 @@ export default function MobileLayout() {
             showLabels
             value={location.pathname} // বর্তমান URL অনুযায়ী সিলেক্ট হবে
             onChange={(event, newValue) => {
-              navigate(newValue); // যেটাতে ক্লিক করবেন সেই URL এ চলে যাবে
+              navigate(newValue,{replace:true}); // যেটাতে ক্লিক করবেন সেই URL এ চলে যাবে
             }}
           >
             {/* value প্রপস এর মাধ্যমে URL এর পাথ বলে দেওয়া হলো */}

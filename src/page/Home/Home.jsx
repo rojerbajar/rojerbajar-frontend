@@ -24,7 +24,6 @@ import CustomerSupportCard from "./Cards/CustomerSupportCard";
 import ContactUsCard from "./Cards/ContactUsCard";
 
 import { useShareCard } from "../hooks/useShareCard";
-import { useSearchParams } from 'react-router-dom';
 
 function Home() {
   const { shareCard } = useShareCard();
