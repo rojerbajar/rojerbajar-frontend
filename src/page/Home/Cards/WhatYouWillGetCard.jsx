@@ -4,7 +4,7 @@ import {
   Typography,
   Box,
   Stack,
-  Avatar
+  Avatar,IconButton
 } from '@mui/material';
 
 // বিকল্প আইকনগুলো ইমপোর্ট করা হলো (যেগুলো ১০০% কাজ করবে)
@@ -14,8 +14,13 @@ import LocalFloristTwoToneIcon from '@mui/icons-material/LocalFloristTwoTone';
 import RestaurantTwoToneIcon from '@mui/icons-material/RestaurantTwoTone'; 
 import AccountBalanceWalletTwoToneIcon from '@mui/icons-material/AccountBalanceWalletTwoTone'; 
 import HandshakeTwoToneIcon from '@mui/icons-material/HandshakeTwoTone';
+import { useLongPress } from "../../hooks/useLongPress";
+export default function WhatYouWillGetCard({id,genreateLink,shareCard}) {
+  const { isTriggered, ...longPressProps } = useLongPress(() => {
+    shareCard(id);
+    // console.log("লং প্রেস সফল হয়েছে!");
+  }, 2000);
 
-export default function WhatYouWillGetCard({id}) {
   return (
  
       <Card id ={id}
@@ -33,9 +38,17 @@ export default function WhatYouWillGetCard({id}) {
           
           {/* হেডিং সেকশন */}
           <Box sx={{ mb: 4, textAlign: 'left', display: 'flex', alignItems: 'flex-start', gap: 2 }}>
+          <IconButton
+            {...longPressProps} // এখানে শুধু ইভেন্ট হ্যান্ডলারগুলো গেল
+            color={isTriggered ? "error" : "primary"} // isTriggered এখানে ব্যবহার করলেন
+              onClick={() => genreateLink({id,path:window.location.pathname})}
+              aria-label="Copy order link" // এটি যুক্ত করুন
+              sx={{ p: 0 }}
+            >
             <Avatar sx={{ bgcolor: '#fff4e6', color: '#d35400', width: 50, height: 50 }}>
               <CardGiftcardTwoToneIcon fontSize="medium" />
             </Avatar>
+            </IconButton>
             <Box>
               <Typography 
                 component="h2"

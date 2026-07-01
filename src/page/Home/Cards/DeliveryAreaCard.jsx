@@ -4,7 +4,7 @@ import {
   Typography,
   Box,
   Stack,
-  Avatar
+  Avatar,IconButton
 } from '@mui/material';
 
 // ১০০% নিরাপদ আইকন ইমপোর্ট করা হলো
@@ -14,8 +14,12 @@ import PlaceTwoToneIcon from '@mui/icons-material/PlaceTwoTone';
 import GroupsTwoToneIcon from '@mui/icons-material/GroupsTwoTone';
 import ExploreTwoToneIcon from '@mui/icons-material/ExploreTwoTone';
 import VolunteerActivismTwoToneIcon from '@mui/icons-material/VolunteerActivismTwoTone';
-
-export default function DeliveryAreaCard({id}) {
+import { useLongPress } from "../../hooks/useLongPress";
+export default function DeliveryAreaCard({id,genreateLink,shareCard}) {
+  const { isTriggered, ...longPressProps } = useLongPress(() => {
+    shareCard(id);
+    // console.log("লং প্রেস সফল হয়েছে!");
+  }, 2000);
   return (
 
       <Card id ={id}
@@ -33,9 +37,18 @@ export default function DeliveryAreaCard({id}) {
           
           {/* প্রধান হেডিং সেকশন (Text align: left) */}
           <Box sx={{ mb: 4, textAlign: 'left', display: 'flex', alignItems: 'flex-start', gap: 2 }}>
-            <Avatar sx={{ bgcolor: '#fff4e6', color: '#d35400', width: 50, height: 50 }}>
-              <MapTwoToneIcon fontSize="medium" />
-            </Avatar>
+
+            <IconButton
+              {...longPressProps}
+              color={isTriggered ? "error" : "primary"}
+              onClick={() => genreateLink({id,path:window.location.pathname})}
+              aria-label="Copy delivery area link"
+              sx={{ p: 0 }}
+            >
+              <Avatar sx={{ bgcolor: '#fff4e6', color: '#d35400', width: 50, height: 50 }}>
+                <MapTwoToneIcon fontSize="medium" />
+              </Avatar>
+            </IconButton>
             <Box>
               <Typography 
                 component="h2"

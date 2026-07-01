@@ -42,7 +42,8 @@ export default function MobileLayout() {
         {/* মাঝখানের Content Area */}
         <Box
           sx={{
-            bgcolor: '#f4eae4',
+            // bgcolor: '#f4eae4',
+            bgcolor: '#f7f8fc',
             flexGrow: 1,
             overflowY: "auto",
             /* Chrome, Safari এবং Opera-এর জন্য স্ক্রলবার লুকানো */

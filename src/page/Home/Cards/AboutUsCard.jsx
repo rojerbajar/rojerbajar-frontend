@@ -4,7 +4,7 @@ import {
   Typography,
   Box,
   Stack,
-  Avatar,
+  Avatar,IconButton
 } from "@mui/material";
 
 // আইকন ইমপোর্ট করা হলো
@@ -13,8 +13,13 @@ import PlaceTwoToneIcon from "@mui/icons-material/PlaceTwoTone";
 import ShoppingBasketTwoToneIcon from "@mui/icons-material/ShoppingBasketTwoTone";
 import VerifiedTwoToneIcon from "@mui/icons-material/VerifiedTwoTone";
 import VolunteerActivismTwoToneIcon from "@mui/icons-material/VolunteerActivismTwoTone";
+import { useLongPress } from "../../hooks/useLongPress";
+export default function AboutUsCard({ id, genreateLink, shareCard }) {
+  const { isTriggered, ...longPressProps } = useLongPress(() => {
+    shareCard(id);
+    // console.log("লং প্রেস সফল হয়েছে!");
+  }, 2000);
 
-export default function AboutUsCard({ id }) {
   return (
     <Card
       id={id}
@@ -39,11 +44,20 @@ export default function AboutUsCard({ id }) {
             gap: 1.5,
           }}
         >
+
+            <IconButton
+                      {...longPressProps} // এখানে শুধু ইভেন্ট হ্যান্ডলারগুলো গেল
+                      color={isTriggered ? "error" : "primary"} // isTriggered এখানে ব্যবহার করলেন
+                        onClick={() => genreateLink({id,path:window.location.pathname})}
+                        aria-label="Copy order link" // এটি যুক্ত করুন
+                        sx={{ p: 0 }}
+                      >
           <Avatar
             sx={{ bgcolor: "#fff4e6", color: "#d35400", width: 50, height: 50 }}
           >
             <Diversity3TwoToneIcon fontSize="medium" />
           </Avatar>
+          </IconButton>
           <Box>
             <Typography
               component="h2"

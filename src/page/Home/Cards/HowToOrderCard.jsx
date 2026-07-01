@@ -16,27 +16,14 @@ import WhatsAppIcon from "@mui/icons-material/WhatsApp"; // সঠিক ইম�
 import PublicTwoToneIcon from "@mui/icons-material/PublicTwoTone";
 import CampaignTwoToneIcon from "@mui/icons-material/CampaignTwoTone";
 import { useLongPress } from "../../hooks/useLongPress";
-import { useShareCard } from "../../hooks/useShareCard";
+// import { useShareCard } from "../../hooks/useShareCard";
 
-export default function HowToOrderCard({id}) {
-  // ১. বর্তমান URL-এর সাথে #how-to-order যুক্ত করা
-  const baseUrl = window.location.origin + window.location.pathname;
-
-  const handleCopy = async (id) => {
-    const newUrl = `${baseUrl}#${id}`;
-    try {
-      await navigator.clipboard.writeText(newUrl);
-      // এখানে একটি টোস্ট মেসেজ দেখাতে পারেন (যেমন: "লিঙ্ক কপি হয়েছে!")
-      console.log("Link copied to clipboard!");
-    } catch (err) {
-      console.error("Failed to copy!", err);
-    }
-  };
-  const { shareCard } = useShareCard();
-  const longPressProps = useLongPress(() => {
-    // alert("হিডেন অ্যাডমিন প্যানেল ওপেন হয়েছে!");
-    shareCard("how-to-order");
-  }, 2000); // ২ সেকেন্ড সময়
+export default function HowToOrderCard({id,genreateLink,shareCard}) {
+ 
+  const { isTriggered, ...longPressProps } = useLongPress(() => {
+    shareCard(id);
+    // console.log("লং প্রেস সফল হয়েছে!");
+  }, 2000);
 
   return (
       <Card id ={id}
@@ -61,8 +48,9 @@ export default function HowToOrderCard({id}) {
             }}
           >
             <IconButton
-              {...longPressProps}
-              onClick={() => handleCopy("how-to-order")}
+            {...longPressProps} // এখানে শুধু ইভেন্ট হ্যান্ডলারগুলো গেল
+            color={isTriggered ? "error" : "primary"} // isTriggered এখানে ব্যবহার করলেন
+              onClick={() => genreateLink({id,path:window.location.pathname})}
               aria-label="Copy order link" // এটি যুক্ত করুন
               sx={{ p: 0 }}
             >

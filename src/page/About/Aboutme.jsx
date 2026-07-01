@@ -60,17 +60,7 @@ import {
       title: "🚀 আমার Project",
       content:
         "আমি www.rojerbajar.com শুরু করেছি। আমার লক্ষ্য Programming-এর মাধ্যমে মানুষের বাস্তব সমস্যার সমাধান করা।",
-    },
-    {
-      title: "❤️ আমি নিজেকে কী বলি",
-      content:
-        "আমি নিজেকে Software Developer বলতে চাই না। আমি নিজেকে Programming Lover বলতে বেশি স্বাচ্ছন্দ্যবোধ করি। Programming আমার কাছে শুধুমাত্র একটি পেশা নয়, এটি আমার ভালোবাসা।",
-    },
-    {
-        title: "🎯 আমার লক্ষ্য",
-        content:
-          "আমি ভবিষ্যতে একজন দক্ষ Software Developer হতে চাই। প্রতিদিন নতুন কিছু শেখা এবং মানুষের জন্য Software তৈরি করাই আমার স্বপ্ন।",
-      },
+    }
   ];
   
   export default function About() {

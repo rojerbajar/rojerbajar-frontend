@@ -5,23 +5,28 @@ export const useLongPress = (callback = () => {}, ms = 2000) => {
   const timerRef = useRef(null);
 
   const startPress = () => {
+    setIsTriggered(false); // নতুন করে শুরুর সময় রিসেট
     timerRef.current = setTimeout(() => {
       setIsTriggered(true);
-      callback(); // টাইমার শেষ হলে কাজ করবে
+      callback();
     }, ms);
   };
 
   const stopPress = () => {
-    clearTimeout(timerRef.current);
+    if (timerRef.current) {
+      clearTimeout(timerRef.current);
+    }
     setIsTriggered(false);
   };
 
   return {
+    // ইভেন্ট হ্যান্ডলারগুলো
     onMouseDown: startPress,
     onMouseUp: stopPress,
     onMouseLeave: stopPress,
     onTouchStart: startPress,
     onTouchEnd: stopPress,
-    isTriggered
+    // স্টেটটি আলাদা করে দিলাম
+    isTriggered 
   };
 };

@@ -160,7 +160,7 @@ const Sidebar = ({ isDrawerOpen, toggleDrawer }) => {
               sx={{ bgcolor: isActive ? "#e3f2fd" : "transparent", borderRadius: "10px", mt: 1 }}
             >
               <ListItemIcon>{item.icon}</ListItemIcon>
-              <ListItemText primary={item.text} />
+              <ListItemText primary={item.text} sx={{ color: "black" }} />
             </ListItemButton>
           );
         })}

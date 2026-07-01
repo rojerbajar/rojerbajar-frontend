@@ -4,7 +4,7 @@ import {
   Typography,
   Box,
   Stack,
-  Avatar
+  Avatar,IconButton
 } from '@mui/material';
 
 // ১০০% নিরাপদ আইকন ইমপোর্ট করা হলো
@@ -13,8 +13,14 @@ import RuleTwoToneIcon from '@mui/icons-material/RuleTwoTone';
 import HelpOutlineTwoToneIcon from '@mui/icons-material/HelpOutlineTwoTone';
 import EditNoteTwoToneIcon from '@mui/icons-material/EditNoteTwoTone';
 import WorkspacePremiumTwoToneIcon from '@mui/icons-material/WorkspacePremiumTwoTone';
+import { useLongPress } from "../../hooks/useLongPress";
+export default function OrderAndReturnPolicyCard({id,genreateLink,shareCard}) {
 
-export default function OrderAndReturnPolicyCard({id}) {
+    const { isTriggered, ...longPressProps } = useLongPress(() => {
+      shareCard(id);
+      // console.log("লং প্রেস সফল হয়েছে!");
+    }, 2000);
+  
   return (
       <Card id ={id}
         sx={{ 
@@ -30,9 +36,17 @@ export default function OrderAndReturnPolicyCard({id}) {
           
           {/* হেডিং সেকশন */}
           <Box sx={{ mb: 4, textAlign: 'left', display: 'flex', alignItems: 'flex-start', gap: 2 }}>
+          <IconButton
+            {...longPressProps} // এখানে শুধু ইভেন্ট হ্যান্ডলারগুলো গেল
+            color={isTriggered ? "error" : "primary"} // isTriggered এখানে ব্যবহার করলেন
+              onClick={() => genreateLink({id,path:window.location.pathname})}
+              aria-label="Copy order link" // এটি যুক্ত করুন
+              sx={{ p: 0 }}
+            >
             <Avatar sx={{ bgcolor: '#fff4e6', color: '#d35400', width: 50, height: 50 }}>
               <AssignmentReturnTwoToneIcon fontSize="medium" />
             </Avatar>
+            </IconButton>
             <Box>
               <Typography component="h2" fontWeight="900" sx={{ color: '#4e2c1d', fontSize: { xs: '1.4rem', sm: '1.7rem' }, lineHeight: 1.3 }}>
                 অর্ডার ও রিটার্ন সংক্রান্ত অনুরোধ

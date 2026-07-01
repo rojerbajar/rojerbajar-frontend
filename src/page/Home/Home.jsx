@@ -24,51 +24,134 @@ import CustomerSupportCard from "./Cards/CustomerSupportCard";
 import ContactUsCard from "./Cards/ContactUsCard";
 
 import { useShareCard } from "../hooks/useShareCard";
+import useCopycustomHooks from "../hooks/useCopycustomHooks";
+// import CopyandImageProvider from "./CopyandImageProvider";
 
 function Home() {
   const { shareCard } = useShareCard();
+  const location = useLocation();
+
+  const { showSnackbar, SnackbarComponent } = useCopycustomHooks();
+
   const [open, setOpen] = useState(false);
   const handleClose = () => setOpen(false);
 
-const location = useLocation();
+  const pageScrolling = (id) => {
+    const element = document.getElementById(id);
+    element?.scrollIntoView({ behavior: "smooth", block: "start" });
+  };
+  useEffect(() => {
+    if (location.state?.scrollTo) {
+      pageScrolling(location.state.scrollTo);
+    } else {
+      const hash = window.location.hash; // যেমন: #how-to-order
+      if (hash) {
+        pageScrolling(hash.slice(1)); // hash থেকে # বাদ দিয়ে ID পাওয়া যাবে
+      }
+    }
+  }, [location.state]); // প্রতিবার লোকেশন স্টেট আপডেট হলে স্ক্রল হবে
 
-useEffect(() => {
-  if (location.state?.scrollTo) {
-    const element = document.getElementById(location.state.scrollTo);
-    element?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-  }
-}, [location.state]); // প্রতিবার লোকেশন স্টেট আপডেট হলে স্ক্রল হবে
-
+  const genreateLink = ({ id, path }) => {
+    console.log("Link generated for:", id);
+    showSnackbar({ id, path });
+  };
 
   return (
     <Box sx={{ overflow: "hidden", boxSizing: "border-box" }}>
       <Box component="img" src={bannerImg} alt="Banner" sx={{ width: "95%" }} />
-
       <Modal open={open} onClose={handleClose}>
         <ModalBody handleClose={handleClose} />
       </Modal>
 
-      <button onClick={() => shareCard("order")}>কার্ডটি শেয়ার করো</button>
       <Stack spacing={1} sx={{ px: 1 }}>
         <RojerBajarWelcomeCard id="welcome" />
-        <WhyWeStartedCard id="why-started" />
-        <AboutUsCard id="about" />
-        <ReasonsCard id="reasons" />
-        <BenefitsCard id="benefits" />
-        <WhatYouWillGetCard id="what-you-will-get" />
-        <JourneyStartCard id="journey-start" />
-        <TrustAndResponsibilityCard id="trust" />
-        <GoalsAndPromisesCard id="goals" />
-        <DeliveryAreaCard id="delivery-area" />
-        <OrderDeliveryTimeCard id="delivery-time" />
-        <RealPhotosCard id="real-photos" />
-        <UpdatedPriceListCard id="price-list" />
-        <HowToOrderCard id="how-to-order" />
-        <PaymentOptionsCard id="payment-options" />
-        <OrderAndReturnPolicyCard id="return-policy" />
-        <CustomerSupportCard id="customer-support" />
-        <ContactUsCard id="contact" />
+        <WhyWeStartedCard
+          id="why-started"
+          genreateLink={genreateLink}
+          shareCard={shareCard}
+        />
+        <AboutUsCard
+          id="about"
+          genreateLink={genreateLink}
+          shareCard={shareCard}
+        />
+        <ReasonsCard
+          id="reasons"
+          genreateLink={genreateLink}
+          shareCard={shareCard}
+        />
+        <BenefitsCard
+          id="benefits"
+          genreateLink={genreateLink}
+          shareCard={shareCard}
+        />
+        <WhatYouWillGetCard
+          id="what-you-will-get"
+          genreateLink={genreateLink}
+          shareCard={shareCard}
+        />
+        <JourneyStartCard
+          id="journey-start"
+          genreateLink={genreateLink}
+          shareCard={shareCard}
+        />
+        <TrustAndResponsibilityCard
+          id="trust"
+          genreateLink={genreateLink}
+          shareCard={shareCard}
+        />
+        <GoalsAndPromisesCard
+          id="goals"
+          genreateLink={genreateLink}
+          shareCard={shareCard}
+        />
+        <DeliveryAreaCard
+          id="delivery-area"
+          genreateLink={genreateLink}
+          shareCard={shareCard}
+        />
+        <OrderDeliveryTimeCard
+          id="delivery-time"
+          genreateLink={genreateLink}
+          shareCard={shareCard}
+        />
+        <RealPhotosCard
+          id="real-photos"
+          genreateLink={genreateLink}
+          shareCard={shareCard}
+        />
+        <UpdatedPriceListCard
+          id="price-list"
+          genreateLink={genreateLink}
+          shareCard={shareCard}
+        />
+        <HowToOrderCard
+          id="how-to-order"
+          genreateLink={genreateLink}
+          shareCard={shareCard}
+        />
+        <PaymentOptionsCard
+          id="payment-options"
+          genreateLink={genreateLink}
+          shareCard={shareCard}
+        />
+        <OrderAndReturnPolicyCard
+          id="return-policy"
+          genreateLink={genreateLink}
+          shareCard={shareCard}
+        />
+        <CustomerSupportCard
+          id="customer-support"
+          genreateLink={genreateLink}
+          shareCard={shareCard}
+        />
+        <ContactUsCard
+          id="contact"
+          genreateLink={genreateLink}
+          shareCard={shareCard}
+        />
       </Stack>
+      {SnackbarComponent}
     </Box>
   );
 }

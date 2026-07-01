@@ -6,7 +6,7 @@ import {
   Stack,
   Avatar,
   Divider,
-  Link
+  Link,IconButton,
 } from '@mui/material';
 
 // নিরাপদ আইকন ইমপোর্ট করা হলো
@@ -15,8 +15,13 @@ import SmartphoneTwoToneIcon from '@mui/icons-material/SmartphoneTwoTone';
 import PublicTwoToneIcon from '@mui/icons-material/PublicTwoTone';
 import CampaignTwoToneIcon from '@mui/icons-material/CampaignTwoTone';
 import WhatsAppIcon from '@mui/icons-material/WhatsApp'; 
-
-export default function UpdatedPriceListCard({id}) {
+import { useLongPress } from "../../hooks/useLongPress";
+export default function UpdatedPriceListCard({id,genreateLink,shareCard}) {
+    const { isTriggered, ...longPressProps } = useLongPress(() => {
+      shareCard(id);
+      // console.log("লং প্রেস সফল হয়েছে!");
+    }, 2000);
+  
   return (
       <Card  id ={id}
         sx={{ 
@@ -32,9 +37,17 @@ export default function UpdatedPriceListCard({id}) {
           
           {/* হেডিং সেকশন */}
           <Box sx={{ mb: 4, textAlign: 'left', display: 'flex', alignItems: 'flex-start', gap: 2 }}>
+          <IconButton
+            {...longPressProps} // এখানে শুধু ইভেন্ট হ্যান্ডলারগুলো গেল
+            color={isTriggered ? "error" : "primary"} // isTriggered এখানে ব্যবহার করলেন
+              onClick={() => genreateLink({id,path:window.location.pathname})}
+              aria-label="Copy order link" // এটি যুক্ত করুন
+              sx={{ p: 0 }}
+            >
             <Avatar sx={{ bgcolor: '#fff4e6', color: '#d35400', width: 50, height: 50 }}>
               <UpdateTwoToneIcon fontSize="medium" />
             </Avatar>
+            </IconButton>
             <Box>
               <Typography component="h2" fontWeight="900" sx={{ color: '#4e2c1d', fontSize: { xs: '1.4rem', sm: '1.7rem' }, lineHeight: 1.3, textAlign: 'left' }}>
                 পণ্যের তালিকা ও আজকের দাম
